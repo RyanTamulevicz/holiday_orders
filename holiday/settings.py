@@ -24,9 +24,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ["SECRET_KEY"]
 
 DEBUG = os.environ.get("DEBUG", False)
-
-ALLOWED_HOSTS = ["localhost", "holiday-orders-dadd0498ade2.herokuapp.com", "127.0.0.1"]
-
+# allow herokuapp
+ALLOWED_HOSTS = ["localhost", "herokuapp.com", "127.0.0.1"]
 
 # Application definition
 
