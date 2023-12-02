@@ -22,4 +22,5 @@ from holiday import settings
 urlpatterns = [
     path("input/", include("orderInput.urls")),
     path("admin/", admin.site.urls),
+    path("", include("searcher.urls")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
