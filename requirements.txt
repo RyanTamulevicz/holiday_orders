@@ -1,6 +1,7 @@
 asgiref==3.7.2
 cfgv==3.4.0
 distlib==0.3.7
+dj-database-url==2.1.0
 Django==4.2.7
 django-htmx==1.17.2
 filelock==3.13.1
@@ -11,6 +12,7 @@ packaging==23.2
 platformdirs==4.0.0
 pre-commit==3.5.0
 psycopg==3.1.14
+psycopg2-binary==2.9.9
 python-dotenv==1.0.0
 PyYAML==6.0.1
 setuptools==69.0.2

@@ -14,6 +14,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 import ast
+import dj_database_url
 
 
 def get_bool_from_env(name, default_value):
@@ -92,6 +93,9 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+
+if db_from_env := dj_database_url.config(default=None):
+    DATABASES["default"].update(db_from_env)
 
 
 # Password validation
