@@ -1,1 +1,2 @@
-web: gunicorn holiday.holiday.wsgi:application
+release: python manage.py migrate --no-input && python manage.py collectstatic --no-input
+web: gunicorn holiday.asgi:application
