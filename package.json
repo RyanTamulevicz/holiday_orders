@@ -1,0 +1,22 @@
+{
+  "name": "holiday_orders",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "postcss static/css/styles.css -o static/css/main.css",
+    "watch:css": "postcss static/css/styles.css -o static/css/main.css --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.3.5"
+  },
+  "devDependencies": {
+    "postcss-cli": "^10.1.0"
+  }
+}
