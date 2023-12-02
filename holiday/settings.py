@@ -22,8 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 SECRET_KEY = os.environ["SECRET_KEY"]
-
-DEBUG = os.environ.get("DEBUG", False)
+DEBUG = os.environ["DEBUG"] if "DEBUG" in os.environ else False
 
 ALLOWED_HOSTS = ["localhost", ".herokuapp.com", "127.0.0.1"]
 
