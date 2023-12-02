@@ -2,5 +2,5 @@ from django.apps import AppConfig
 
 
 class OrderinputConfig(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
-    name = 'orderInput'
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "orderInput"
