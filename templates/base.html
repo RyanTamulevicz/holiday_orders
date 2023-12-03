@@ -14,10 +14,13 @@
         <script src="{% static 'htmx.min.js' %}" defer></script> 
         <link rel="stylesheet" href="{% static 'css/main.css' %}">
     </head>
-    <body class="bg-blue-500">
+    <body class="bg-emerald-950 text-white"> 
         <nav>
+            <ul class="p-2 flex flex-row-reverse space-x-4 space-x-reverse">
+                <li><a href="{% url 'input' %}">Input</a></li>
+                <li><a href="{% url 'search' %}">Search</a></li>
+            </ul>
         </nav>
-
         <main>
             {% block content %}
             {% endblock content %}
