@@ -8,4 +8,7 @@ urlpatterns = [
     path("api/new-input-row", api.new_item_row, name="new-input-row"),
     path("api/submit-order", api.submit_order, name="submit-order"),
     path("api/clear-order", api.clear_order, name="clear-order"),
+    path(
+        "api/auto-complete-phone", api.auto_complete_phone, name="auto-complete-phone"
+    ),
 ]

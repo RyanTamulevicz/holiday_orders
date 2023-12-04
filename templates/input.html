@@ -15,17 +15,17 @@
                 <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="phone-number">
                     Phone Number
                 </label>
-                <input name="phone-number" 
+                    <input name="phone-number" 
                     class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white" 
                     id="phone-number" 
                     type="text" 
                     placeholder="123-456-7890"
-                    _="on htmx:validation:validate
-                            if !/^\\(\\d{3}\\) \\d{3}-\\d{4}$/.test(me.value)
-                                call me.setCustomValidity('Please enter a valid phone number (e.g., (123) 456-7890)')
-                            else
-                                call me.setCustomValidity('')"
+                    pattern="^\(\d{3}\)\s\d{3}-\d{4}$"
+                    hx-get="{% url 'auto-complete-phone' %}"
+                    hx-trigger="input changed delay:500ms"
+                    hx-target="#phone-number-suggestions"
                     required>
+                <div id="phone-number-suggestions"></div>
             </div>
         </div>
 
@@ -75,8 +75,9 @@
 {% block extra_scripts %}
 <script>
 document.getElementById('phone-number').addEventListener('input', function (e) {
-    var x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
-    e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+    var digits = e.target.value.replace(/\D/g, '');
+    var formattedNumber = digits.match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+    e.target.value = !formattedNumber[2] ? formattedNumber[1] : '(' + formattedNumber[1] + ') ' + formattedNumber[2] + (formattedNumber[3] ? '-' + formattedNumber[3] : '');
 });
 </script>
 {% endblock %}
