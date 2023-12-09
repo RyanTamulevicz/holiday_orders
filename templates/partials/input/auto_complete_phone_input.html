@@ -1,0 +1,7 @@
+<div class="autocomplete" id="phone-number-suggestions">
+    <ul>
+        {% for number in phone_numbers %}
+            <li class="phone-number-suggestion" data-number="{{ number }}">{{ number }}</li>
+        {% endfor %}
+    </ul>
+</div>

@@ -21,8 +21,8 @@
                     type="text" 
                     placeholder="123-456-7890"
                     pattern="^\(\d{3}\)\s\d{3}-\d{4}$"
-                    hx-get="{% url 'auto-complete-phone' %}"
-                    hx-trigger="input changed delay:500ms"
+                    hx-post="{% url 'auto-complete-phone' %}"
+                    hx-trigger="input changed delay:500ms, search" 
                     hx-target="#phone-number-suggestions"
                     required>
                 <div id="phone-number-suggestions"></div>

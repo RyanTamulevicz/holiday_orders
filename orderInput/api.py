@@ -1,12 +1,12 @@
 from django.shortcuts import render
 from django.views.decorators.http import require_POST
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse
 
 import re
 
 
 def new_item_row(request):
-    return render(request, "partials/new_item_row.html")
+    return render(request, "partials/input/new_item_row.html")
 
 
 @require_POST
@@ -36,15 +36,16 @@ def clear_order(request):
     return render(request, "input.html")
 
 
+@require_POST
 def auto_complete_phone(request):
-    partial_number = request.GET.get("phone-number", "")
-    print(partial_number)
-    # Implement logic to search for matching phone numbers
-    # For example, using a database query
-    matching_numbers = [
-        "(123) 456-7890",
-        "(234) 567-8901",
-        ...,
-    ]  # Replace with actual search logic
+    import random
 
-    return JsonResponse({"suggestions": matching_numbers})
+    phone_numbers = [
+        f"({random.randint(100, 999)}) {random.randint(100, 999)}-{random.randint(1000, 9999)}"
+        for _ in range(5)
+    ]
+    return render(
+        request,
+        "partials/input/auto_complete_phone_input.html",
+        {"phone_numbers": phone_numbers},
+    )
