@@ -33,6 +33,7 @@
             <table class="min-w-full bg-white">
                 <thead>
                     <tr>
+                        <th class="py-2 px-4 bg-gray-200 text-black">Category</th>
                         <th class="py-2 px-4 bg-gray-200 text-black">Item Name</th>
                         <th class="py-2 px-4 bg-gray-200 text-black">Quantity</th>
                         <th class="py-2 px-4 bg-gray-200 text-black">Page Number</th>
@@ -40,12 +41,7 @@
                     </tr>
                 </thead>
                 <tbody id="items-container">
-                    <tr class="item-row">
-                        <td class="py-2 px-4"><input name="item_name[]" type="text" placeholder="Item Name" class="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-1 px-2 leading-tight focus:outline-none focus:bg-white"></td>
-                        <td class="py-2 px-4"><input name="quantity[]" type="number" placeholder="Quantity" class="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-1 px-2 leading-tight focus:outline-none focus:bg-white"></td>
-                        <td class="py-2 px-4"><input name="page_number[]" type="number" placeholder="Page Number" class="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-1 px-2 leading-tight focus:outline-none focus:bg-white"></td>
-                        <td class="py-2 px-4"><input name="line_number[]" type="number" placeholder="Line Number" class="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-1 px-2 leading-tight focus:outline-none focus:bg-white"></td>
-                    </tr>
+                    {% include 'partials/input/new_item_row.html' %}
                 </tbody>
             </table>
         </div>
