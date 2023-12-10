@@ -20,6 +20,7 @@ class Order(models.Model):
 class Item(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     item_name = models.CharField(max_length=200)
+    quantity = models.IntegerField(default=1)
     page_number = models.IntegerField(default=0)
     line_number = models.IntegerField(default=0)
     order = models.ForeignKey(Order, on_delete=models.CASCADE, null=False)

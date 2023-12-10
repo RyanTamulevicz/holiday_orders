@@ -1,7 +1,20 @@
 <tr class="item-row">
-    <td class="py-2 px-4"><input name="category[]" type="text" placeholder="Category" class="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-1 px-2 leading-tight focus:outline-none focus:bg-white"></td>
-    <td class="py-2 px-4"><input name="item_name[]" type="text" placeholder="Item Name" class="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-1 px-2 leading-tight focus:outline-none focus:bg-white"></td>
-    <td class="py-2 px-4"><input name="quantity[]" type="number" placeholder="Quantity" class="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-1 px-2 leading-tight focus:outline-none focus:bg-white"></td>
-    <td class="py-2 px-4"><input name="page_number[]" type="number" placeholder="Page Number" class="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-1 px-2 leading-tight focus:outline-none focus:bg-white"></td>
-    <td class="py-2 px-4"><input name="line_number[]" type="number" placeholder="Line Number" class="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-1 px-2 leading-tight focus:outline-none focus:bg-white"></td>
+    <td class="py-2 px-4">
+        <input name="category[]" value="{% if item.category.category_name %}{{ item.category.category_name }}{% endif %}" type="text" placeholder="Category" class="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-1 px-2 leading-tight focus:outline-none focus:bg-white">
+    </td>
+    <td class="py-2 px-4">
+        <input name="item_name[]" value="{% if item.item_name %}{{ item.item_name }}{% endif %}" type="text" placeholder="Item Name" class="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-1 px-2 leading-tight focus:outline-none focus:bg-white">
+    </td>
+    <td class="py-2 px-4">
+        <input name="quantity[]" value="{% if item.quantity %}{{ item.quantity }}{% endif %}" type="number" placeholder="Quantity" class="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-1 px-2 leading-tight focus:outline-none focus:bg-white">
+    </td>
+    <td class="py-2 px-4">
+        <input name="page_number[]" value="{% if item.page_number %}{{ item.page_number }}{% endif %}" type="number" placeholder="Page Number" class="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-1 px-2 leading-tight focus:outline-none focus:bg-white">
+    </td>
+    <td class="py-2 px-4">
+        <input name="line_number[]" value="{% if item.line_number %}{{ item.line_number }}{% endif %}" type="number" placeholder="Line Number" class="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-1 px-2 leading-tight focus:outline-none focus:bg-white">
+    </td>
+    <td class="py-2 px-4">
+        <button type="button" class="delete-row-button bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onclick="deleteRow(this)">Delete</button>
+    </td>
 </tr>

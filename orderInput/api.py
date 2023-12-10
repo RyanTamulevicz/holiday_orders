@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.decorators.http import require_POST
 from django.http import HttpResponse
 from .models import Customer
-from .utils.input_utils import create_get_customer_and_order
+from .utils.input_utils import create_get_customer_and_order, return_full_order
 
 import re
 
@@ -32,7 +32,7 @@ def auto_complete_phone(request):
 
     phone_numbers = Customer.objects.filter(
         phone_number__startswith=entered_number
-    ).values_list("phone_number", flat=True)
+    ).values_list("phone_number", flat=True)[:5]
 
     phone_numbers_list = list(phone_numbers)
 
@@ -48,14 +48,16 @@ def auto_complete_phone(request):
 
 
 def fetch_phone_number_info(request):
-    print(request.GET.get("phone-number"))
-    customer = Customer.objects.get(phone_number=request.GET.get("phone-number"))
-    print(return_full_order(customer))
-    return HttpResponse("success")
+    phone_number = request.GET.get("phone-number")
+    customer = Customer.objects.get(phone_number=phone_number)
+    items = return_full_order(customer)
 
-
-def return_full_order(customer):
-    order = customer.order
-    print(order)
-
-    return
+    return render(
+        request,
+        "partials/input/customer_info.html",
+        {
+            "order_items": items,
+            "last_name": customer.last_name,
+            "phone_number": customer.phone_number,
+        },
+    )

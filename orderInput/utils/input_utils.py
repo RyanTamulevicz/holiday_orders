@@ -56,21 +56,30 @@ def customer_and_order_creation(information):
 def input_items_to_db(information, order):
     with transaction.atomic():
         try:
+            items = Item.objects.filter(order=order)
+            items.delete()
+
             for i in range(len(information["category"])):
                 category, created_category = Category.objects.get_or_create(
                     category_name=information["category"][i]
                 )
 
-                item, created_item = Item.objects.get_or_create(
+                item = Item.objects.create(
                     category=category,
                     item_name=information["item_names"][i],
+                    quantity=information["quantities"][i],
                     page_number=information["page_numbers"][i],
                     line_number=information["line_numbers"][i],
                     order=order,
                 )
 
-                if created_category or created_item:
+                if created_category:
                     category.save()
-                    item.save()
+                item.save()
         except Exception:
             raise
+
+
+def return_full_order(customer):
+    order = customer.order
+    return Item.objects.filter(order=order)
