@@ -11,4 +11,9 @@ urlpatterns = [
     path(
         "api/auto-complete-phone", api.auto_complete_phone, name="auto-complete-phone"
     ),
+    path(
+        "api/fetch-phone-number-info",
+        api.fetch_phone_number_info,
+        name="fetch-phone-number-info",
+    ),
 ]

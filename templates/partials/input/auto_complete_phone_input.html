@@ -1,7 +1,9 @@
 <div class="autocomplete" id="phone-number-suggestions">
-    <ul>
+    <ul class="bg-white shadow-lg rounded-lg overflow-hidden">
         {% for number in phone_numbers %}
-            <li class="phone-number-suggestion" data-number="{{ number }}">{{ number }}</li>
+            <li class="text-black phone-number-suggestion px-4 py-2 hover:bg-gray-200 cursor-pointer transition duration-150 ease-in-out" data-phone-number="{{ number }}" hx-get="{% url 'fetch-phone-number-info' %}?phone-number={{ number }}" hx-trigger="click">
+                {{ number }}
+            </li>
         {% endfor %}
     </ul>
 </div>
