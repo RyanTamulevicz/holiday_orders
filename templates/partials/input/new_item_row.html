@@ -12,7 +12,7 @@
             <th class="py-2 px-4 bg-gray-200 text-black">Item Name</th>
             {% endif %}
             {% if selected_category %}
-            <th class="py-2 px-4 bg-gray-200 text-black">Line Item</th>
+            <th class="py-2 px-4 bg-gray-200 text-black">Line Number</th>
             <th class="py-2 px-4 bg-gray-200 text-black">Page Number</th>
             <th class="py-2 px-4 bg-gray-200 text-black">Quantity</th>
             {% endif %}
@@ -57,7 +57,7 @@
         {% if selected_category %}
         {# add line_item and page_number and quantity #}
         <td class="py-2 px-4">
-            <input type="number" name="line_item[]" class="appearance-none block w-full bg-gray-100 text-black border rounded py-1 px-2 leading-tight focus:outline-none focus:bg-white" placeholder="Line Item">
+            <input type="number" name="line_item[]" class="appearance-none block w-full bg-gray-100 text-black border rounded py-1 px-2 leading-tight focus:outline-none focus:bg-white" placeholder="Line Number">
         </td>
         <td class="py-2 px-4">
             <input type="number" name="page_number[]" class="appearance-none block w-full bg-gray-100 text-black border rounded py-1 px-2 leading-tight focus:outline-none focus:bg-white" placeholder="Page Number">
