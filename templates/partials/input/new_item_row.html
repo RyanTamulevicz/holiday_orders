@@ -1,20 +1,74 @@
-<tr class="item-row">
-    <td class="py-2 px-4">
-        <input name="category[]" value="{% if item.category.category_name %}{{ item.category.category_name }}{% endif %}" type="text" placeholder="Category" class="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-1 px-2 leading-tight focus:outline-none focus:bg-white">
-    </td>
-    <td class="py-2 px-4">
-        <input name="item_name[]" value="{% if item.item_name %}{{ item.item_name }}{% endif %}" type="text" placeholder="Item Name" class="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-1 px-2 leading-tight focus:outline-none focus:bg-white">
-    </td>
-    <td class="py-2 px-4">
-        <input name="quantity[]" value="{% if item.quantity %}{{ item.quantity }}{% endif %}" type="number" placeholder="Quantity" class="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-1 px-2 leading-tight focus:outline-none focus:bg-white">
-    </td>
-    <td class="py-2 px-4">
-        <input name="page_number[]" value="{% if item.page_number %}{{ item.page_number }}{% endif %}" type="number" placeholder="Page Number" class="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-1 px-2 leading-tight focus:outline-none focus:bg-white">
-    </td>
-    <td class="py-2 px-4">
-        <input name="line_number[]" value="{% if item.line_number %}{{ item.line_number }}{% endif %}" type="number" placeholder="Line Number" class="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-1 px-2 leading-tight focus:outline-none focus:bg-white">
-    </td>
-    <td class="py-2 px-4">
-        <button type="button" class="delete-row-button bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onclick="deleteRow(this)">Delete</button>
-    </td>
-</tr>
+<table class="w-full bg-white" id="item-table">
+    <thead>
+        <tr>
+            <th class="py-2 px-4 bg-gray-200 text-black">Category</th>
+            {% if grade %}
+            <th class="py-2 px-4 bg-gray-200 text-black">Grade</th>
+            {% endif %}
+            {% if type %}
+            <th class="py-2 px-4 bg-gray-200 text-black">Type</th>
+            {% endif %}
+            {% if not grade and not type and selected_category %}
+            <th class="py-2 px-4 bg-gray-200 text-black">Item Name</th>
+            {% endif %}
+            {% if selected_category %}
+            <th class="py-2 px-4 bg-gray-200 text-black">Line Item</th>
+            <th class="py-2 px-4 bg-gray-200 text-black">Page Number</th>
+            <th class="py-2 px-4 bg-gray-200 text-black">Quantity</th>
+            {% endif %}
+            <th class="py-2 px-4 bg-gray-200 text-black"></th>
+        </tr>
+    </thead>
+    <tbody id="items-container">
+        <tr class="item-row">
+            <td class="py-2 px-4">
+            <select name="category[]" id="categories" class="appearance-none block w-full bg-gray-100 text-black border rounded py-1 px-2 leading-tight focus:outline-none focus:bg-white" hx-target="closest table" hx-get="{% url 'get-category-options' %}" hx-swap="outerHTML">
+                <option class="text-black" value="">Select a category</option>
+                {% for category in categories %}
+                    <option class="text-black" value="{{ category.0 }}" {% if selected_category == category.0 %}selected{% endif %}>{{ category.1 }}</option>
+                {% endfor %}
+            </select>
+        </td>
+        {% if grade %}
+        <td class="py-2 px-4">
+            <select name="grade[]" class="appearance-none block w-full bg-gray-100 text-black border rounded py-1 px-2 leading-tight focus:outline-none focus:bg-white">
+                <option class="text-black" value="">Select a grade</option>
+                {% for g in grade %}
+                    <option class="text-black" value="{{ g.0 }}" {% if selected_grade == g.0 %}selected{% endif %}>{{ g.1 }}</option>
+                {% endfor %}
+            </select>
+        </td>
+        {% endif %}
+        {% if type %}
+        <td class="py-2 px-4">
+            <select name="type[]" class="appearance-none block w-full bg-gray-100 text-black border rounded py-1 px-2 leading-tight focus:outline-none focus:bg-white">
+                <option class="text-black" value="">Select a type</option>
+                {% for t in type %}
+                    <option class="text-black" value="{{ t.0 }}" {% if selected_type == t.0 %}selected{% endif %}>{{ t.1 }}</option>
+                {% endfor %}
+            </select>
+        </td>
+        {% endif %}
+        {% if not grade and not type and selected_category %}
+        <td class="py-2 px-4">
+            <input type="text" name="item_name[]" class="appearance-none block w-full bg-gray-100 text-black border rounded py-1 px-2 leading-tight focus:outline-none focus:bg-white" placeholder="Item Name">
+        </td>
+        {% endif %}
+        {% if selected_category %}
+        {# add line_item and page_number and quantity #}
+        <td class="py-2 px-4">
+            <input type="number" name="line_item[]" class="appearance-none block w-full bg-gray-100 text-black border rounded py-1 px-2 leading-tight focus:outline-none focus:bg-white" placeholder="Line Item">
+        </td>
+        <td class="py-2 px-4">
+            <input type="number" name="page_number[]" class="appearance-none block w-full bg-gray-100 text-black border rounded py-1 px-2 leading-tight focus:outline-none focus:bg-white" placeholder="Page Number">
+        </td>
+        <td class="py-2 px-4">
+            <input type="number" name="quantity[]" class="appearance-none block w-full bg-gray-100 text-black border rounded py-1 px-2 leading-tight focus:outline-none focus:bg-white" placeholder="Quantity">
+        </td>
+        {% endif %}
+        <td class="py-2 px-4">
+            <button type="button" class="delete-row-button bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onclick="deleteRow(this)">Delete</button>
+        </td>
+    </tr>
+    </tbody>
+</table>

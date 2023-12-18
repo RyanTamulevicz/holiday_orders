@@ -16,4 +16,9 @@ urlpatterns = [
         api.fetch_phone_number_info,
         name="fetch-phone-number-info",
     ),
+    path(
+        "api/get-category-options",
+        api.get_category_options,
+        name="get-category-options",
+    ),
 ]
